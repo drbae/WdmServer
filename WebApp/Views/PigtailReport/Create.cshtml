@@ -1,0 +1,53 @@
+﻿@model DrBAE.WdmServer.Models.PigtailReport
+@using DrBAE.WdmServer.Models;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>생성</h1>
+
+<h4>Pigtail report</h4>
+@*컨트롤러이름*@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LotId" class="control-label"></label>
+                <select asp-for="LotId" class="form-control" asp-items="ViewBag.LotId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FormatId" class="control-label"></label>
+                <select asp-for="FormatId" class="form-control" asp-items="ViewBag.FormatId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                    <label asp-for="IChipFile" class="control-label"></label>
+                    <input asp-for="IChipFile" class="form-control" />
+                    <span asp-validation-for="IChipFile" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="IDataFile" class="control-label"></label>
+                <input asp-for="IDataFile" class="form-control" />
+                <span asp-validation-for="IDataFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

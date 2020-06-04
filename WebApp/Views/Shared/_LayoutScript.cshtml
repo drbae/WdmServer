@@ -1,0 +1,27 @@
+﻿
+@using DrBAE.WdmServer.TagHelpers
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+@*---- MvcGrid ----*@
+<script src="~/js/mvc-grid/mvc-grid.js"></script>
+<script>
+
+    var doAddRowClick = @((bool)(ViewData["SetGridEvent"] ?? false) ? "true" : "false");
+    var controllerPath = '@ViewContext.RouteData.Values["controller"]';
+    var detailsPath = '@(ViewData["DetailsLinkPath"] ?? "Details")';
+
+    jQuery(document).ready(function () {
+        [].forEach.call(document.getElementsByClassName('mvc-grid'), function (element) { new MvcGrid(element); });
+        if (doAddRowClick) addRowClick(controllerPath, detailsPath);
+        if (typeof addCustomRowClick !== 'undefined') addCustomRowClick();
+        $("#@ActionTag.OpenFileId").change(function () { $("#@ActionTag.OpenFormId").submit() });
+    });
+</script>
+@*---- ~MvcGrid ----*@
+
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+

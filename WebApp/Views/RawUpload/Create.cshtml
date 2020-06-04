@@ -1,0 +1,54 @@
+﻿@model DrBAE.WdmServer.Models.RawUpload
+@using DrBAE.WdmServer.Models;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>생성</h1>
+<h4>RawUpload</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" name="UploadForm" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Files" class="control-label"></label>
+                <input asp-for="Files" class=" form-control" webkitdirectory directory multiple />
+            </div>
+            <div class="form-group">
+                <input asp-for="ZipFile" type="hidden" class=" form-control" multiple />
+            </div>
+            @*<div class="form-group">
+                <label asp-for="ZipFile" class="control-label"></label>
+                <input asp-for="ZipFile" type="file" class=" form-control" multiple />
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfigId" class="control-label"></label>
+                <select asp-for="ConfigId" class="form-control" asp-items="ViewBag.ConfigId"></select>
+            </div>
+            <div class="form-group">
+                <input type="button" onclick="DoUpload()" value="Create" class="btn btn-primary" />
+                <script>
+                    function DoUpload() {
+                        if (!Files.value) { alert("파일 업로드!"); }
+                        else { UploadForm.submit(); }
+                    }
+                </script>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

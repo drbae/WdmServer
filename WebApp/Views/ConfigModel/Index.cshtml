@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DrBAE.WdmServer.Models.ConfigModel>
+
+@{
+    ViewData["Title"] = "Index";
+    ViewData["SetGridEvent"] = true;
+    var titles = DrBAE.WdmServer.Models.ConfigModel.DisplayNames;
+}
+
+<h4>Config</h4>
+<br />
+<p>
+    <a asp-action="Create">Create New</a> <span>num modles: @Model.Count()</span>
+</p>
+
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        //{ id, nameof(ConfigType), nameof(Name), nameof(Content), nameof(Pol), nameof(NumCh), nameof(Description) };
+        columns.Add(model => model.Id).Titled(titles[0]);
+        columns.Add(model => model.ConfigType).Titled(titles[1]).Filterable(GridFilterType.Multi);
+        columns.Add(model => model.Name).Titled(titles[2]);
+        columns.Add(model => model.NumCh).Titled(titles[5]);
+        columns.Add(model => model.Pol).RenderedAs(Model => Model.Pol == true ? "O" : "").Titled(titles[4]);
+        columns.Add(model => model.Description).Titled(titles[6]);
+    })
+    .Empty("No data found")
+    .Filterable()
+    .Using(GridFilterMode.Excel)
+    .Pageable(pager =>
+    {
+        pager.PageSizes = HardCoding.View.PagerSizes;
+        pager.ShowPageSizes = true;
+        pager.PagesToDisplay = 10;
+        pager.RowsPerPage = 1;
+    })
+    .Css("table-hover")
+    .RowAttributed(model => new { data_id = model.Id })
+)

@@ -1,0 +1,64 @@
+﻿@model DrBAE.WdmServer.Models.AnalysisModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Analysis</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AnalysisRawUploads)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnalysisRawUploads.Count)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Config)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Config.Name)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NumDut)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumDut)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" asp-controller="@AnalysisDataModelController.Route" , asp-action="Index" asp-route-search="@Model.Description">Analysis Data 이동</a>
+</div>
+<br />
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

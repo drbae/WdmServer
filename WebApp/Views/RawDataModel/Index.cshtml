@@ -1,0 +1,34 @@
+﻿@model IEnumerable<DrBAE.WdmServer.Models.RawDataModel>
+@using DrBAE.WdmServer.WebApp.Controllers
+@using DrBAE.WdmServer.Models;
+
+@{
+    ViewData["Title"] = "Raw Data";
+    ViewData["SetGridEvent"] = true;
+}
+
+<h4>Raw Data</h4>
+<br />
+@(Html
+        .Grid(Model)
+        .Build(columns =>
+        {
+            columns.Add(model => model.Id).Titled(@Html.DisplayNameFor(model => model.Id)).Filterable(false).Sortable(true);
+            columns.Add(model => model.Sn).Titled(@Html.DisplayNameFor(model => model.Sn)).Sortable(true);
+            columns.Add(model => model.RawUpload.Description).Titled(@Html.DisplayNameFor(model => model.RawUpload));
+            columns.Add(model => $"{model.Data.Length} Byte").Titled(@Html.DisplayNameFor(model => model.Data));
+            columns.Add(model => model.Analyses).Titled(@Html.DisplayNameFor(model => model.AnalysisDataModels));
+        })
+        .Empty("No data found")
+        .Filterable()
+        .Using(GridFilterMode.Excel)
+        .Pageable(pager =>
+        {
+            pager.PageSizes = HardCoding.View.PagerSizes;
+            pager.ShowPageSizes = true;
+            pager.PagesToDisplay = 10;
+            pager.RowsPerPage = 1;
+        })
+        .Css("table-hover")
+        .RowAttributed(model => new { data_id = model.Id })
+)

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DrBAE.WdmServer.Models.PigtailReport>
+@using DrBAE.WdmServer.Models;
+
+@{
+    ViewData["Title"] = "Index";
+
+    ViewData["SetGridEvent"] = true;
+}
+
+<h4>Pigtail report</h4>
+<br />
+<p>
+    <a asp-action="Create">Pigtail 성적서 생성</a>
+</p>
+
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.Lot.LotName).Titled(@Html.DisplayNameFor(model => model.LotId));
+        columns.Add(model => model.Format.Name).Titled(@Html.DisplayNameFor(model => model.FormatId));
+        columns.Add(model => model.Description).Titled(@Html.DisplayNameFor(model => model.Description));
+        columns.Add(model => model.Report).Titled(@Html.DisplayNameFor(model => model.Report));
+        columns.Add(model => model.DataFile).Titled(@Html.DisplayNameFor(model => model.DataFile));
+    })
+    .Empty("No data found")
+    .Filterable()
+    .Using(GridFilterMode.Excel)
+    .Pageable(pager =>
+    {
+        pager.PageSizes = HardCoding.View.PagerSizes;
+        pager.ShowPageSizes = true;
+        pager.PagesToDisplay = 10;
+        pager.RowsPerPage = 1;
+    })
+    .Css("table-hover")
+    .RowAttributed(model => new { data_id = model.Id })
+)

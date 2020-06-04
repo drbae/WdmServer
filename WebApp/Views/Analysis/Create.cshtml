@@ -1,0 +1,59 @@
+﻿@model DrBAE.WdmServer.Models.AnalysisModel
+@using DrBAE.WdmServer.Models;
+
+@{
+    ViewData["Title"] = "Create";
+    var model = new AnalysisModel();
+    var configId = (SelectList)ViewData[AnalysisModel.pConfigId];
+    var rawUpload = (SelectList)ViewData[AnalysisModel.pAnalysisRawUploads];
+}
+
+<h1>생성</h1>
+
+<h4>Analysis</h4>
+<script language="javascript" type='text/javascript'>
+    function shift() {
+        alert("shift");
+</script>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfigId" class="control-label"></label>
+                <select asp-for="ConfigId" class="form-control" asp-items="configId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="RawUploadIds" class="control-label"></label>
+                @* TODO:
+                    1. RawUpload에서 여러개 선택하는 UI 추가 (검색?)
+                    2. 추가된 RawUpload의 Id들을 RawUploadIds에 추가
+                *@
+                <select asp-for="RawUploadIds" class="form-control" asp-items="rawUpload"></select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

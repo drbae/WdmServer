@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <UsingTask TaskName="GetCurrentBuildVersion" AssemblyFile="..\Universe.BuildVersion.dll" />
+  <Target Name="BeforeBuildActionsProject1" BeforeTargets="BeforeBuild">
+    <GetCurrentBuildVersion BaseVersion="$(FileVersion)">
+      <Output TaskParameter="Version" PropertyName="FileVersion" />
+    </GetCurrentBuildVersion>
+    <PropertyGroup>
+      <AssemblyVersion>$(FileVersion)</AssemblyVersion>
+    </PropertyGroup>
+  </Target>
+  
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>DrBAE.WdmServer.WebUtility</AssemblyName>
+    <RootNamespace>DrBAE.WdmServer.WebUtility</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>CS8600;CS8602;CS8603;CS8625;CS8604</WarningsAsErrors>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="2.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExceptionProcessing\ExceptionProcessing.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DrBAE.TnM.Utility">
+      <HintPath>..\Lib\DrBAE.TnM.Utility.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

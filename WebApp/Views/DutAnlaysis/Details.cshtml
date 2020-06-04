@@ -1,0 +1,27 @@
+﻿@model DrBAE.WdmServer.Models.DutAnalysisModelBase
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ChipData</h4>
+    <hr />
+    <dl class="row">
+        @foreach ((object key, object value) vm in ViewBag.vms)
+        {
+        <dt class="col-sm-2">
+            @vm.key
+        </dt>
+        <dd class="col-sm-10">
+            @vm.value
+        </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <UsingTask TaskName="GetCurrentBuildVersion" AssemblyFile="..\Universe.BuildVersion.dll" />
+  <Target Name="BeforeBuildActionsProject1" BeforeTargets="BeforeBuild">
+    <GetCurrentBuildVersion BaseVersion="$(FileVersion)">
+      <Output TaskParameter="Version" PropertyName="FileVersion" />
+    </GetCurrentBuildVersion>
+    <PropertyGroup>
+      <AssemblyVersion>$(FileVersion)</AssemblyVersion>
+    </PropertyGroup>
+  </Target>
+  
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>CS8600;CS8602;CS8603;CS8625;CS8604</WarningsAsErrors>
+    <AssemblyName>DrBAE.WdmServer.ExceptionProcessing</AssemblyName>
+    <RootNamespace>DrBAE.WdmServer.ExceptionProcessing</RootNamespace>
+  </PropertyGroup>
+
+</Project>

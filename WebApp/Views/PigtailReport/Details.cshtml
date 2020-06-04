@@ -1,0 +1,57 @@
+﻿@model DrBAE.WdmServer.Models.PigtailReport
+@using DrBAE.WdmServer.Models;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Pigtail report</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lot)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lot.LotName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Format)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Format.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReportSize)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ReportSize) Bytes
+        </dd>
+        @*<dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ChipFileName)
+            </dt>*@
+        @*<dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ChipFileName)
+            </dd>*@
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReportName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ReportName)
+        </dd>
+
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

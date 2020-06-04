@@ -1,0 +1,72 @@
+﻿@model DrBAE.WdmServer.Models.RawUpload
+
+@{
+    ViewData["Title"] = "Details";
+
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>RawUpload</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Config)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Config.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RawData)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RawData.Count)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AnalysisRawUploads)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Analyses)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RawLogicVersion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RawLogicVersion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeltaT) ms
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeltaT)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" asp-controller="@RawDataModelController.Route", asp-action="Index" asp-route-search="@Model.Description">Raw Data 이동</a>
+</div>
+<br />
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model.Id" style="color:red">Delete</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

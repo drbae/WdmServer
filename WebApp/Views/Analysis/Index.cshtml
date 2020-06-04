@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DrBAE.WdmServer.Models.AnalysisModel>
+
+@{
+    ViewData["Title"] = "Index";
+
+    ViewData["SetGridEvent"] = true;
+}
+
+<h4>Analysis</h4>
+<br />
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.Description).Titled(@Html.DisplayNameFor(model => model.Description));
+        columns.Add(model => model.AnalysisRawUploads.Count).Titled(@Html.DisplayNameFor(model => model.AnalysisRawUploads));
+        columns.Add(model => model.Config.Name).Titled(@Html.DisplayNameFor(model => model.Config));
+        columns.Add(model => model.NumDut).Titled(@Html.DisplayNameFor(model => model.NumDut));
+        columns.Add(model => model.User.UserName).Titled(@Html.DisplayNameFor(model => model.User));
+        columns.Add(model => model.Date).Titled(@Html.DisplayNameFor(model => model.Date)).Filterable(GridFilterType.Double).Sortable(true);
+        columns.Add(model => model.DeltaT).Titled(@Html.DisplayNameFor(model => model.DeltaT)).Filterable(false);
+    })
+    .Empty("No data found")
+    .Filterable()
+    .Using(GridFilterMode.Excel)
+    .Pageable(pager =>
+    {
+        pager.PageSizes = HardCoding.View.PagerSizes;
+        pager.ShowPageSizes = true;
+        pager.PagesToDisplay = 10;
+        pager.RowsPerPage = 1;
+    })
+    .Css("table-hover")
+    .RowAttributed(model => new { data_id = model.Id })
+)

@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+
+@using DrBAE.WdmServer.TagHelpers
+
+@await Html.PartialAsync("_LayoutHead")
+<html lang="en">
+<body class="n-body">
+
+    @*----헤더 Parts----*@
+    <header class="n-header">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <img class="n-Logo" src="~/images/로고.jpg" alt="네온" title="NEON PHOTONICS" />
+        </a>
+    </header>
+
+    @*----메뉴 Parts-----*@
+    <nav class="n-nav box-shadow">
+        <div>
+            <ul class="navbar-nav flex-grow-1 border-bottom">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="@AnalysisController.Route" asp-action="Index">
+                        <i class="material-icons n-icon">add_box</i>
+                        Analysis
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="@AnalysisDataModelController.Route" asp-action="Index">
+                        <i class="material-icons n-icon">assignment</i> AnalysisData
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav flex-grow-1 border-bottom">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="@RawUploadController.Route" asp-action="Index">
+                        <i class="material-icons n-icon">add_box</i> RawUpload
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="@RawDataModelController.Route" asp-action="Index">
+                        <i class="material-icons n-icon">assignment</i> RawData
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav flex-grow-1 border-bottom">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="@PigtailReportController.Route" asp-action="Index">
+                        <i class="material-icons n-icon">description</i> PigtailReport
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="@DutAnlaysisController.Route" asp-action="Index">
+                        <i class="material-icons n-icon">description</i> ChipData
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav flex-grow-1 border-bottom">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="@LotModelController.Route" asp-action="Index">
+                        <i class="material-icons n-icon">filter_1</i> Lot
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="@PigtailReportFormatController.Route" asp-action="Index">
+                        <i class="material-icons n-icon">list_alt</i> PigtailReportFormat
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="@ConfigModelController.Route" asp-action="Index">
+                        <i class="material-icons n-icon">crop_5_4</i> Config
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <br />
+        <br />
+
+        <div class="container flex-grow-1 text-muted">
+            <h6>&copy; 2020 - Designed by DrBAE</h6>
+        </div>
+
+    </nav>
+
+    @*----툴바 parts----*@
+    <div class="n-toolBar">
+
+        <div class="n-tools">
+            <a href="javascript:void();" title="새로고침"><i class="fas fa-redo-alt n-icon" style="font-size:22px; color:#646464"></i></a>
+            <a href="javascript:void();" title="캡처"><i class="fas fa-crop-alt n-icon" style="font-size:22px; color:#646464"></i></a>
+
+            <a href="javascript:void();" title="추가"><i class="fas fa-plus n-icon" style="margin-left:20px; font-size:22px; color:#646464"></i></a>
+            <a href="javascript:void();" title="Excel 내려받기"><i class="fa fa-file-excel-o n-icon" style="font-size:22px; color:#646464"></i></a>
+        </div>
+
+        <div class="n-searchBar form-inline">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="material-icons n-icon" style="color:slategrey">search</i></button>
+        </div>
+
+        <partial name="_LoginPartial" />
+
+    </div>
+
+
+    @*----각 Grid 페이지 표시 Parts----*@
+    <section class="n-section">
+        <div class="n-container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </section>
+
+    @*---- Script ----*@
+    @await Html.PartialAsync("_LayoutScript")
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

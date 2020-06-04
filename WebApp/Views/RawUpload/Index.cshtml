@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DrBAE.WdmServer.Models.RawUpload>
+
+@{
+    ViewData["Title"] = "Index";
+    ViewData["SetGridEvent"] = true;
+}
+
+<h4>Raw Upload</h4>
+<br />
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.Id).Titled(@Html.DisplayNameFor(model => model.Id)).Filterable(false).Sortable(true);
+        columns.Add(model => model.Description).Titled(@Html.DisplayNameFor(model => model.Description));
+        columns.Add(model => model.Config.Name).Titled(@Html.DisplayNameFor(model => model.Config));
+        columns.Add(model => model.RawData.Count).Titled(@Html.DisplayNameFor(model => model.RawData)).Filterable(GridFilterType.Double);
+        columns.Add(model => model.User).Titled(@Html.DisplayNameFor(model => model.User));
+        columns.Add(model => model.Date.ToLocalTime()).Titled(@Html.DisplayNameFor(model => model.Date)).Filterable(GridFilterType.Double).Sortable(true);
+        columns.Add(model => model.DeltaT).Titled(@Html.DisplayNameFor(model => model.DeltaT)).Filterable(false);
+        columns.Add(model => model.AnalysisRawUploads.Count).Titled(@Html.DisplayNameFor(model => model.AnalysisRawUploads)).Filterable(false);
+    })
+    .Empty("No data found")
+    .Filterable()
+    .Using(GridFilterMode.Excel)
+    .Pageable(pager =>
+    {
+        pager.PageSizes = HardCoding.View.PagerSizes;
+        pager.ShowPageSizes = true;
+        pager.PagesToDisplay = 10;
+        pager.RowsPerPage = 1;
+    })
+    .Css("table-hover")
+    .RowAttributed(model => new { data_id = model.Id })
+)
+

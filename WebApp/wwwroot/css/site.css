@@ -1,0 +1,202 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+
+
+/* Neon Layout
+-------------------------------------------------- */
+.n-body {
+    display: grid;
+    grid-template-areas: "header tools" "nav section";
+    grid-template-rows: 50px 1fr;
+    grid-template-columns: 240px 1fr;
+    grid-row-gap: 2px;
+    grid-column-gap: 5px;
+    height: 100vh;
+    margin: 0;
+    /*background-color: #F9F9F9;*/
+}
+
+.n-Logo {/*헤더 로고*/
+    height: auto;
+    width: 120px;
+    margin-left: 20px;
+}
+
+.n-icon {/*각메뉴 아이콘*/
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    margin-right: 7px;
+}
+.n-icon.md-35{font-size: 35px;}
+
+.n-header {/*헤더 설정*/
+    grid-area: header;
+    /*background-color: white;*/
+    overflow: hidden;
+    position: fixed;
+    width: 250px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+.n-nav { /*좌측 메뉴바 설정*/
+    grid-area: nav;
+    height: 100%;
+    width: 250px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    position: fixed;
+    margin-top: 50px;
+    overflow-y: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+    /*background-color: white;*/
+}
+.n-nav a {
+    display: block;
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+}
+.n-nav a:hover {
+    /*background-color: #E5E5E5;*/
+}
+
+.n-toolBar {/*상단 툴바 설정*/
+    grid-area: tools;
+    /*background-color: white;*/
+    overflow: auto;
+}
+
+.n-tools {/*상단 툴바 - 왼쪽 툴 아이콘*/
+    float: left;
+    padding-left : 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.n-searchBar {/*상단 툴바 - 탐색창*/
+    align-content: center;
+    position: absolute;
+    left: 42%;
+}
+.n-searchBar input[type=text] {
+    padding: 6px;
+    margin-top: 6px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    width: 400px;
+}
+.n-searchBar button {
+    float: right;
+    padding: 5px 6px;
+    margin-top: 6px;
+    margin-right: 15px;
+    background: #ddd;
+    font-size: 14.5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.n-searchBar-centered {
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.n-login {/*상단 툴바 - 우측 로그 인*/
+    float: right;
+    vertical-align: middle;
+    padding-left: 0;
+    padding-right: 50px;
+    margin-top: 4px;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.n-section {/*본문(그리드 위치) 설정*/
+    padding-top: 7px;
+    grid-area: section;
+    /*background-color: #F9F9F9;*/
+    overflow: auto;
+}
+
+.n-container {
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 100%;
+}

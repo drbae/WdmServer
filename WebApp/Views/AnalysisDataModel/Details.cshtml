@@ -1,0 +1,48 @@
+﻿@model DrBAE.WdmServer.Models.AnalysisDataModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>AnalysisData</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Analysis)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Analysis.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RawData)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RawData.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+        <dd class="col-sm-10">
+            <pre>@Html.DisplayFor(model => model.Data)</pre>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

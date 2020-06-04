@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DrBAE.WdmServer.Models.PigtailReportFormat>
+
+@{
+    ViewData["Title"] = "Index";
+
+    ViewData["SetGridEvent"] = false;
+}
+
+<h4>Pigtail Report Format</h4>
+<br />
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.Name).Titled(@Html.DisplayNameFor(model => model.Name));
+        columns.Add(model => Html.ActionLink("Down", "DownloadFormFile", new { id = model.Id })).Titled("Form File");
+        columns.Add(model => Html.ActionLink("Down", "DownloadConfigFile", new { id = model.Id })).Titled("Config File");
+        columns.Add(model => Html.ActionLink("Delete", "Delete", new { id = model.Id }, new { @style = "color:red" }));
+    })
+    .Empty("No data found")
+    .Filterable()
+    .Using(GridFilterMode.Excel)
+    .Pageable(pager =>
+    {
+        pager.PageSizes = HardCoding.View.PagerSizes;
+        pager.ShowPageSizes = true;
+        pager.PagesToDisplay = 10;
+        pager.RowsPerPage = 1;
+    })
+    .Css("table-hover")
+    .RowAttributed(model => new { data_id = model.Id })
+)
