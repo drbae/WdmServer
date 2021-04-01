@@ -1,4 +1,5 @@
 # WdmServer
+- [x] TargetFramework: netcoreapp3.1
 - [x] WDM 측정데이터 및 분석 데이터 관리 Web서버
 - [x] PostgreSQL DB서버와 ASP.NET Core 기반이며 
 - [x] 백엔드와 프린터엔드 모두에 C#을 사용가능한 Blazor 기술을 활용
