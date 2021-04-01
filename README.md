@@ -1,5 +1,6 @@
 # WdmServer
-- TargetFramework: netcoreapp3.1
+- Target Framework: netcoreapp3.1
+- 프로젝트 중단으로 미완성 상태
 
 - [x] WDM 측정데이터 및 분석 데이터 관리 Web서버
 - [x] PostgreSQL DB서버와 ASP.NET Core 기반이며 
