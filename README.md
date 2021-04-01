@@ -2,6 +2,7 @@
 - [x] WDM 측정데이터 및 분석 데이터 관리 Web서버
   - Target Framework: netcoreapp3.1
   - 프로젝트 중단으로 미완성 상태
+### 특징
 - [x] PostgreSQL DB서버와 ASP.NET Core 기반이며 
 - [x] 백엔드와 프린터엔드 모두에 C#을 사용가능한 Blazor 기술을 활용
 - [x] 추후 추가되는 데이터모델을 런타임에 생성할 수 있는 Dynamic DB Context
