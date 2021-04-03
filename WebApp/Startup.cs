@@ -144,7 +144,7 @@ namespace DrBAE.WdmServer.WebApp
 
         void configLogic(IServiceCollection sc)
         {
-            sc.AddSingleton(sp => new PigtailLogic());
+            sc.AddSingleton<IPigtailLogic>(sp => new PigtailLogic());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

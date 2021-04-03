@@ -127,7 +127,7 @@ namespace DrBAE.WdmServer.WebApp.Data
             await context.SaveChangesAsync();
         }
 
-        public static async Task AddRawData(IServiceProvider sp, DbContext context)
+        public static async Task AddRawData(IServiceProvider sp, DbContext context, string baseDir)
         {
             if (context.Set<RawUpload>().Any()) return;
 
@@ -138,7 +138,7 @@ namespace DrBAE.WdmServer.WebApp.Data
             model.UserId = _admin?.UserId ?? throw ExBuilder.Create("Can't find user id").Throw();
             model.Description = $"Seed by DrBAE";
 
-            var dir = Path.Combine("TestData", "Rich");
+            var dir = Path.Combine(baseDir, "TestData", Path.Combine("Rich", "raw", "BGA05020830"));
             var files = Directory.GetFiles(dir, "*.txt", SearchOption.AllDirectories).Select(x => (x, File.ReadAllText(x)));
             model.ZipFile = Compression.Zip(files);
 

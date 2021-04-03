@@ -9,6 +9,7 @@ using Universe.Web.Data;
 
 namespace DrBAE.WdmServer.Models
 {
+    using MR = ModelRecordAttribute;
     public class PigtailReport : ModelBase<PigtailReport>
     {
         public const string pFormatId = nameof(FormatId);
@@ -24,27 +25,21 @@ namespace DrBAE.WdmServer.Models
         const string _F = "Format";
         const string _L = "LOT";
         const string _D = "Data File";
-        const string _R = "Report Name";
-                
-        static PigtailReport()
-        {
-            PropNames.AddRange(new[] { pFormatId, pLotId, pDesc, pDataFile, pReportName, pReport });
-            DisplayNames.AddRange(new[] { _F, _L, pDesc, _D, _R, pReport });
-        }
+        const string _R = "Report Name";         
 
-        [DisplayName(_F), ForeignKey(nameof(Format))] public int FormatId { get; set; }
-        [ForeignKey(pFormatId)] public virtual PigtailReportFormat Format { get; set; }
+        [MR(1), DisplayName(_F), ForeignKey(nameof(Format))] public int FormatId { get; set; }
+        [MR(2), ForeignKey(pFormatId)] public virtual PigtailReportFormat Format { get; set; }
 
-        [DisplayName(_L)] public int LotId { get; set; }
-        [ForeignKey(pLotId)] public virtual LotModel Lot { get; set; }
+        [MR(3), DisplayName(_L)] public int LotId { get; set; }
+        [MR(4), ForeignKey(pLotId)] public virtual LotModel Lot { get; set; }
 
-        public string Description { get; set; }
+        [MR(5)] public string Description { get; set; }
         
-        [DisplayName(_D)] public byte[] DataFile { get; set; }
+        [MR(6), DisplayName(_D)] public byte[] DataFile { get; set; }
         [NotMapped] public IFormFile IDataFile { get; set; }// = EmptyFile.Default;
 
-        public byte[] Report { get; set; }
-        [DisplayName(_R)] public string ReportName { get; set; }
+        [MR(7)] public byte[] Report { get; set; }
+        [MR(8), DisplayName(_R)] public string ReportName { get; set; }
         [NotMapped] public int ReportSize => Report?.Length ?? 0;
 
     }

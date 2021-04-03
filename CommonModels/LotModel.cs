@@ -5,24 +5,19 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.ComponentModel;
 using Universe.Web.Data;
+#pragma warning disable CS8618
 
 namespace DrBAE.WdmServer.Models
 {
+    using MR = ModelRecordAttribute;
+
     public class LotModel : ModelBase<LotModel>
     {
         public const string pName = nameof(LotName);
-        const string _LN = "LOT Name";
-        const string _LD = "LOT Date";
-        static LotModel()
-        {
-            PropNames.AddRange(new[] { nameof(LotName), nameof(LotDate) });
-            DisplayNames.AddRange(new[] { _LN, _LD });
-        }
 
-#pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
-        [DisplayName(_LN)] public string LotName { get; set; }
-#pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
-        [DisplayName(_LD), DataType(DataType.DateTime)] public DateTime LotDate { get; set; } = DateTime.Now;
+        [MR(1), DisplayName("LOT Name")] public string LotName { get; set; }
+        [MR(2), DisplayName("LOT Date"), DataType(DataType.DateTime)] public DateTime LotDate { get; set; } = DateTime.Now;
 
     }//class
 }
+#pragma warning restore CS8618

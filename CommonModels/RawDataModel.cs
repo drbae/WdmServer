@@ -12,26 +12,22 @@ using Universe.Web.Data;
 
 namespace DrBAE.WdmServer.Models
 {
+    using MR = ModelRecordAttribute;
     public class RawDataModel : ModelBase<RawDataModel>
     {
         public const string pSn = nameof(Sn);
         public const string pData = nameof(Data);
         const string _DS = "DUT SN";
         const string _U = "Upload";
-        const string _A = "Analyses";
-        static RawDataModel()
-        {
-            PropNames.AddRange(new[] { nameof(Sn), nameof(Data), nameof(RawUploadId) });
-            DisplayNames.AddRange(new[] { _DS, nameof(Data), _U });
-        }
+        const string _A = "Analyses";        
 
-        [DisplayName(_DS)] public string Sn { get; set; }
-        public byte[] Data { get; set; }
+        [MR(1), DisplayName(_DS)] public string Sn { get; set; }
+        [MR(2)] public byte[] Data { get; set; }
         [NotMapped] public IFormFile File { get; set; }
-        public RawUpload RawUpload { get; set; }
-        [DisplayName(_U), ForeignKey("RawUpload")] public int RawUploadId { get; set; }
+        [MR(3)] public RawUpload RawUpload { get; set; }
+        [MR(4), DisplayName(_U), ForeignKey("RawUpload")] public int RawUploadId { get; set; }
 
-        [DisplayName(_A)] public ICollection<AnalysisDataModel> AnalysisDataModels { get; set; }
+        [MR(5), DisplayName(_A)] public ICollection<AnalysisDataModel> AnalysisDataModels { get; set; }
         [NotMapped] public string Analyses
         {
             get

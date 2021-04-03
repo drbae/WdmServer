@@ -13,6 +13,7 @@ using System.Text;
 #pragma warning disable CS8618 // null을 허용하지 않는 필드가 초기화되지 않았습니다. nullable로 선언하는 것이 좋습니다.
 namespace DrBAE.WdmServer.Models
 {
+    using MR = ModelRecordAttribute;
     public class RawUpload : ModelBase<RawUpload>
     {
         public const string pDesc = nameof(Description);
@@ -26,27 +27,25 @@ namespace DrBAE.WdmServer.Models
         const string _U = "Uploader";
         const string _ND = "NumDut";
         const string _A = "Analyses";
-        static RawUpload()
-        {
-            PropNames.AddRange(new[] { pDesc, pConfigId, pUserId, nameof(Date), nameof(NumDut), nameof(RawLogicVersion), nameof(DeltaT) });
-            DisplayNames.AddRange(new[]{ pDesc, _C, _U, nameof(Date), _ND, nameof(RawLogicVersion), nameof(DeltaT)  });
-        }
+        
+        [MR(1)] public string Description { get; set; }
+        [MR(2)] [ForeignKey(pConfigId)] public ConfigModel Config { get; set; }
+        [MR(3)] [DisplayName(_C)] public int ConfigId { get; set; }
 
-        public string Description { get; set; }
-        [ForeignKey(pConfigId)] public ConfigModel Config { get; set; }
-        [DisplayName(_C)] public int ConfigId { get; set; }
+        [MR(4)] [ForeignKey(pUserId)] public IdentityUser User { get; set; }
+        [MR(5)] [DisplayName(_U)] public string UserId { get; set; }
+        [MR(6)] [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyMMdd-HHmmss}")] public DateTime Date { get; set; }
 
-        [ForeignKey(pUserId)] public IdentityUser User { get; set; }
-        [DisplayName(_U)] public string UserId { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyMMdd-HHmmss}")] public DateTime Date { get; set; }
-
-        [DisplayName(_ND)] public int NumDut { get; set; }//Analysis에 대한 RawData,AnalysisData,ChipData 개수        
-        public ICollection<RawDataModel> RawData { get; set; }
+        [MR(7)] [DisplayName(_ND)] public int NumDut { get; set; }//Analysis에 대한 RawData,AnalysisData,ChipData 개수        
+        [MR(8)] public ICollection<RawDataModel> RawData { get; set; }
 
         [NotMapped] public List<IFormFile>? Files { get; set; }
         [NotMapped] public byte[]? ZipFile { get; set; }//
 
-        [DisplayName(_A)] public ICollection<AnalysisRawUpload> AnalysisRawUploads { get; set; }
+        [MR(9)]
+        [DisplayName(_A)]
+        public ICollection<AnalysisRawUpload> AnalysisRawUploads { get; set; }
+            = new List<AnalysisRawUpload>();
         [NotMapped] public string Analyses
         {
             get
@@ -58,8 +57,8 @@ namespace DrBAE.WdmServer.Models
             }
         }
 
-        public string RawLogicVersion { get; set; } = "";
-        public long DeltaT { get; set; } = 0;
+        [MR(10)] public string RawLogicVersion { get; set; } = "";
+        [MR(11)] public long DeltaT { get; set; } = 0;
     }
 }
 #pragma warning restore CS8618 // null을 허용하지 않는 필드가 초기화되지 않았습니다. nullable로 선언하는 것이 좋습니다.

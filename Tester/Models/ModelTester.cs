@@ -11,48 +11,14 @@ namespace Tester.Models
 {
     public class ModelTester
     {
-        public class M1 : ModelBase<M1> 
+        [Fact]
+        void AnalysisDataModel()
         {
-            [Fact] void type() => Assert.Equal(typeof(M1), ModelType);
+            var exp = new object?[] { 1, "abcd-xyz-123", "loss=1.23", 345, null, 543, null };
+            var model = new AnalysisDataModel();
+            model.SetValues(exp);
+            var act = model.GetValues();
+            Assert.Equal(exp, act);
         }
-        public class M2 : ConfigModel
-        {
-            [Fact]
-            void type() => Assert.Equal(typeof(ConfigModel), ModelType);
-
-            [Fact] void propCount()
-            {
-                Assert.Equal("Id", pId);
-                Assert.Equal(7, M2.DisplayNames.Count);
-                Assert.Equal(7, M2.PropNames.Count);
-            }
-            [Fact] void getValues()
-            {
-                var m = new ConfigModel() { Id = 1 };
-                Assert.Equal(7, m.GetPropNames().Count);
-                Assert.Equal(7, m.GetDisplayNames().Count);
-                var v = GetValues();
-                Assert.Equal(7, v.Count);
-            }
-            [Fact] void setValues()
-            {
-                //_propNames = new[] { nameof(Type), nameof(Name), nameof(Content), nameof(Pol), nameof(NumCh), nameof(Description) };
-                var m = new ConfigModel();
-                var exp = new object[] { 11, ConfigType.Analysis, "Test", "test contents", false, 5, "test config" };
-                m.SetValues(exp);
-                var act = m.GetValues();
-                Assert.Equal(exp, act);
-            }
-
-            [Fact] void toString()
-            {
-                var m = new ConfigModel();
-                var str = ToString();
-                Debug.WriteLine(str);
-
-                Assert.Equal(7, str.Split(',').Length);
-            }
-        }
-
     }
 }

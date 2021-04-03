@@ -11,6 +11,7 @@ using System.ComponentModel;
 
 namespace DrBAE.WdmServer.Models
 {
+    using MR = ModelRecordAttribute;
     /// <summary>
     /// DUT 분석 데이터의 기본 모델
     /// </summary>
@@ -19,14 +20,8 @@ namespace DrBAE.WdmServer.Models
         public const string pAnalysisData = nameof(AnalysisData);
         const string _AD = "Analysis Data";
 
-        static DutAnalysisModelBase()
-        {
-            PropNames.AddRange(new string[] { nameof(AnalysisDataId) });
-            DisplayNames.AddRange(new string[] { _AD });
-        }
-
-        [DisplayName(_AD)] public virtual AnalysisDataModel AnalysisData { get; set; }
-        [DisplayName(_AD), ForeignKey(pAnalysisData)] public int AnalysisDataId { get; set; }
+        [MR(1), DisplayName(_AD)] public virtual AnalysisDataModel AnalysisData { get; set; }
+        [MR(2), DisplayName(_AD), ForeignKey(pAnalysisData)] public int AnalysisDataId { get; set; }
 
         //
         public new T GetValue<T>(string propName)// where T: struct

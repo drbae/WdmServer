@@ -19,11 +19,13 @@ namespace DrBAE.WdmServer.WebApp
     {
         public static void Main(string[] args)
         {
-            Environment.CurrentDirectory = AppContext.BaseDirectory;
+            _baseDir = Environment.CurrentDirectory;//path error occured in SeedData.AddRawData()
+            Environment.CurrentDirectory = AppContext.BaseDirectory;//referenced project output dir
+            
             var host = CreateHostBuilder(args).Build();
             initSeed(host).Wait();
             host.Run();
-        }
+        }        
 
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
@@ -32,7 +34,7 @@ namespace DrBAE.WdmServer.WebApp
 
                 //--- Logging ฐüทร ----
                 //.ConfigureLogging(builder => builder.ClearProviders().AddConsole())
-                .ConfigureLogging(builder => builder.ClearProviders().AddProvider(new Provider("WebApp")));
+                .ConfigureLogging(builder => builder.ClearProviders().AddProvider(new Provider("WebApp.log")));
         }
 
         static async Task initSeed(IHost host)
@@ -55,7 +57,7 @@ namespace DrBAE.WdmServer.WebApp
                 await AppSeed.AddConfig(sp, dc);
                 await AppSeed.AddLot(sp, dc);
                 await AppSeed.AddPigtailReportFormat(sp, dc);
-                await AppSeed.AddRawData(sp, dc);
+                await AppSeed.AddRawData(sp, dc, _baseDir);
             }
             catch (Exception ex)
             {
@@ -63,5 +65,7 @@ namespace DrBAE.WdmServer.WebApp
                 throw ex;
             }
         }
-    }
+        static string _baseDir;// 2012-04-03 path problem: 
+
+    }//class
 }

@@ -11,22 +11,17 @@ using Universe.Web.Data;
 
 namespace DrBAE.WdmServer.Models
 {
+    using MR = ModelRecordAttribute;
     public class AnalysisRawUpload : ModelBase<AnalysisRawUpload>
     {
         public const string pAnalysisId = nameof(AnalysisId);
         public const string pRawUploadId = nameof(RawUploadId);
 
-        static AnalysisRawUpload()
-        {
-            PropNames.AddRange(new[] { pAnalysisId, pRawUploadId });
-            DisplayNames.AddRange(new[] { pAnalysisId, pRawUploadId });
-        }
+        [MR(1), ForeignKey(pAnalysisId)] public AnalysisModel Analysis { get; set; }
+        [MR(2)]public int AnalysisId { get; set; }
 
-        [ForeignKey(pAnalysisId)] public AnalysisModel Analysis { get; set; }
-        public int AnalysisId { get; set; }
-
-        [ForeignKey(pRawUploadId)] public RawUpload RawUpload { get; set; }
-        public int RawUploadId { get; set; }        
+        [MR(3), ForeignKey(pRawUploadId)] public RawUpload RawUpload { get; set; }
+        [MR(4)] public int RawUploadId { get; set; }        
 
     }
 }

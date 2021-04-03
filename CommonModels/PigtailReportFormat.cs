@@ -11,6 +11,7 @@ using Universe.Web.Data;
 
 namespace DrBAE.WdmServer.Models
 {
+    using MR = ModelRecordAttribute;
     public class PigtailReportFormat : ModelBase<PigtailReportFormat>
     {
         public const string pName = nameof(Name);
@@ -23,17 +24,11 @@ namespace DrBAE.WdmServer.Models
         const string _FF = "Format File";
         const string _CI = "Config";
 
-        static PigtailReportFormat()
-        {
-            PropNames.AddRange(new[] { nameof(Name), nameof(FormFile), nameof(ConfigId) });
-            DisplayNames.AddRange(new[] { _FN, _FF, _CI });
-        }
-
-        [DisplayName(_FN)] public string Name { get; set; }
-        [DisplayName(_FF)] public byte[] FormFile { get; set; }
+        [MR(1), DisplayName(_FN)] public string Name { get; set; }
+        [MR(2), DisplayName(_FF)] public byte[] FormFile { get; set; }
         [NotMapped] public IFormFile IFormFile { get; set; }
-        public virtual ConfigModel Config { get; set; }
-        [DisplayName(_CI), ForeignKey("Config")] public int ConfigId { get; set; }
+        [MR(3)] public virtual ConfigModel Config { get; set; }
+        [MR(4), DisplayName(_CI), ForeignKey("Config")] public int ConfigId { get; set; }
 
     }
 }
